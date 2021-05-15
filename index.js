@@ -41,7 +41,38 @@ function managerPrompt() {
         response.managerEmail,
         response.managerOffice
       );
+      mainMenu();
     });
 }
 
-promptAndWrite();
+//main menu function for handling input of non-manager positions
+function mainMenu() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "What Type of Employee Would You Like to Add?",
+        choices: [
+          "Engineer",
+          "Intern",
+          "I have added all the employees that I need to.",
+        ],
+        name: "menuChoice",
+      },
+    ])
+    .then((response) => {
+      if (
+        response.menuChoice === "I have added all the employees that I need to."
+      ) {
+        return;
+      } else if (response.menuChoice === "Engineer") {
+        console.log(response.menuChoice);
+        mainMenu();
+      } else {
+        console.log(response.menuChoice);
+        mainMenu();
+      }
+    });
+}
+
+managerPrompt();
