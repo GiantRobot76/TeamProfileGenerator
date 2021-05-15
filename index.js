@@ -78,4 +78,13 @@ function mainMenu() {
     });
 }
 
-managerPrompt();
+// managerPrompt();
+
+function createEngineer(name, ID, email, gitHub) {
+  const newEngineer = new classes.Engineer(name, ID, email, gitHub);
+}
+
+function createIntern(name, ID, email, school) {
+  const newIntern = new classes.Intern(name, ID, email, school);
+  console.log(newIntern);
+}
