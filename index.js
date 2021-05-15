@@ -137,7 +137,20 @@ function createManager(name, ID, email, office) {
 
 function createEngineer(name, ID, email, gitHub) {
   const newEngineer = new classes.Engineer(name, ID, email, gitHub);
-  console.log(newEngineer);
+
+  let startHTML = `<div class="col text-center mb-2">
+  <h2 class="bg-info border border-dark mb-0">${name}</h2>
+  <p class="border border-dark mb-0 mt-0 fw-bold fs-5">Engineer</p>
+  <div class="inner-wrapper border border-dark">
+    <a href="mailto:${email}">${email}</a>
+    <p class="mt-1 mb-0 border-top border-dark mb-0">ID Number: ${ID}</p>
+  </div>
+  <div class="inner-wrapper border border-dark">
+    <a href="${gitHub}" target="_blank">${gitHub}</a>
+  </div>
+</div>`;
+
+  htmlBuild = htmlBuild + startHTML;
 }
 
 function createIntern(name, ID, email, school) {
