@@ -41,7 +41,7 @@ const htmlEnd = `   </div>
 </html>`;
 
 function writetoHTML(input) {
-  fs.writeFile("test.html", input, (err) =>
+  fs.writeFile("./dist/team.html", input, (err) =>
     err ? console.error(err) : console.log("File Created")
   );
 }
