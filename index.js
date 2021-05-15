@@ -107,8 +107,7 @@ function mainMenu() {
       } else if (response.menuChoice === "Engineer") {
         engineerPrompt();
       } else {
-        console.log(response.menuChoice);
-        mainMenu();
+        internPrompt();
       }
     });
 }
@@ -138,6 +137,8 @@ function createManager(name, ID, email, office) {
 function createEngineer(name, ID, email, gitHub) {
   const newEngineer = new classes.Engineer(name, ID, email, gitHub);
 
+  //add engineer inputs to html template and append
+
   let startHTML = `<div class="col text-center mb-2">
   <h2 class="bg-info border border-dark mb-0">${name}</h2>
   <p class="border border-dark mb-0 mt-0 fw-bold fs-5">Engineer</p>
@@ -155,7 +156,21 @@ function createEngineer(name, ID, email, gitHub) {
 
 function createIntern(name, ID, email, school) {
   const newIntern = new classes.Intern(name, ID, email, school);
-  console.log(newIntern);
+
+  //add engineer inputs to html template and append
+  let startHTML = `<div class="col text-center mb-2">
+  <h2 class="bg-info border border-dark mb-0">${name}</h2>
+  <p class="border border-dark mb-0 mt-0 fw-bold fs-5">Intern</p>
+  <div class="inner-wrapper border border-dark">
+    <a href="mailto:${email}">${email}</a>
+    <p class="mt-1 mb-0 border-top border-dark mb-0">ID Number: ${ID}</p>
+    <p class="border-bottom border-top border-dark mt-0 mb-0">
+      Current School: ${school}
+    </p>
+  </div>
+</div>`;
+
+  htmlBuild = htmlBuild + startHTML;
 }
 
 //prompt sequences for creation of individual classes
