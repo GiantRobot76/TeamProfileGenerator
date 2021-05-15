@@ -12,6 +12,12 @@ const inquirerPrompts = [
   "Enter Office Number:",
 ];
 
+function writetoHTML(input) {
+  fs.writeFile("test.html", input, (err) =>
+    err ? console.error(err) : console.log("File Created")
+  );
+}
+
 //collect manager inputs and writes to file
 function managerPrompt() {
   inquirer
@@ -157,4 +163,4 @@ function internPrompt() {
     });
 }
 
-managerPrompt();
+writetoHTML(testHTML4);
