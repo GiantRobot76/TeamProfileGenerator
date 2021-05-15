@@ -38,7 +38,7 @@ function managerPrompt() {
       },
     ])
     .then((response) => {
-      console.log(
+      createManager(
         response.managerName,
         response.managerID,
         response.managerEmail,
@@ -69,8 +69,7 @@ function mainMenu() {
       ) {
         return;
       } else if (response.menuChoice === "Engineer") {
-        console.log(response.menuChoice);
-        mainMenu();
+        engineerPrompt();
       } else {
         console.log(response.menuChoice);
         mainMenu();
@@ -78,13 +77,84 @@ function mainMenu() {
     });
 }
 
-// managerPrompt();
+//functions below create new instances of defined classes, append applicable results to HTML
+
+function createManager(name, ID, email, office) {
+  const newManager = new classes.Manager(name, ID, email, office);
+  console.log(newManager);
+}
 
 function createEngineer(name, ID, email, gitHub) {
   const newEngineer = new classes.Engineer(name, ID, email, gitHub);
+  console.log(newEngineer);
 }
 
 function createIntern(name, ID, email, school) {
   const newIntern = new classes.Intern(name, ID, email, school);
   console.log(newIntern);
 }
+
+//prompt sequences for creation of individual classes
+function engineerPrompt() {
+  inquirer
+    .prompt([
+      { type: "input", message: "Enter Employee Name:", name: "employeeName" },
+      {
+        type: "input",
+        message: "Enter Employee ID:",
+        name: "employeeID",
+      },
+      {
+        type: "input",
+        message: "Enter Employee Email:",
+        name: "employeeEmail",
+      },
+      {
+        type: "input",
+        message: "Enter Employee Github URL:",
+        name: "employeeGithub",
+      },
+    ])
+    .then((response) => {
+      createEngineer(
+        response.employeeName,
+        response.employeeID,
+        response.employeeEmail,
+        response.employeeGithub
+      );
+      mainMenu();
+    });
+}
+
+function internPrompt() {
+  inquirer
+    .prompt([
+      { type: "input", message: "Enter Employee Name:", name: "employeeName" },
+      {
+        type: "input",
+        message: "Enter Employee ID:",
+        name: "employeeID",
+      },
+      {
+        type: "input",
+        message: "Enter Employee Email:",
+        name: "employeeEmail",
+      },
+      {
+        type: "input",
+        message: "Enter Employee's School:",
+        name: "employeeSchool",
+      },
+    ])
+    .then((response) => {
+      createIntern(
+        response.employeeName,
+        response.employeeID,
+        response.employeeEmail,
+        response.employeeSchool
+      );
+      mainMenu();
+    });
+}
+
+managerPrompt();
