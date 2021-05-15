@@ -12,6 +12,34 @@ const inquirerPrompts = [
   "Enter Office Number:",
 ];
 
+//following variables hold beginning and ending of final HTML file as template literals - will append specific info in functions
+
+let htmlBuild = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <title>Team Roster Info</title>
+  </head>
+  <body>
+    <div class="jumbotron bg-warning">
+      <h1 class="display-4 text-center fw-bold">Our Team</h1>
+      <hr class="my-4" />
+    </div>
+    <div class="container">
+      <div class="row row-cols-4">`;
+
+const htmlEnd = `   </div>
+</body>
+</html>`;
+
 function writetoHTML(input) {
   fs.writeFile("test.html", input, (err) =>
     err ? console.error(err) : console.log("File Created")
@@ -73,6 +101,8 @@ function mainMenu() {
       if (
         response.menuChoice === "I have added all the employees that I need to."
       ) {
+        let finalHTML = htmlBuild + htmlEnd;
+        writetoHTML(finalHTML);
         return;
       } else if (response.menuChoice === "Engineer") {
         engineerPrompt();
@@ -87,7 +117,22 @@ function mainMenu() {
 
 function createManager(name, ID, email, office) {
   const newManager = new classes.Manager(name, ID, email, office);
-  console.log(newManager);
+
+  //add manager inputs to html template and append
+
+  let startHTML = `<div class="col text-center mb-2">
+  <h2 class="bg-info border border-dark mb-0">${name}</h2>
+  <p class="border border-dark mb-0 mt-0 fw-bold fs-5">Manager</p>
+  <div class="inner-wrapper border border-dark">
+    <a href="mailto:${email}">${email}</a>
+    <p class="mt-1 mb-0 border-top border-dark mb-0">ID Number: ${ID}</p>
+    <p class="border-bottom border-top border-dark mt-0 mb-0">
+      Office Number: ${office}
+    </p>
+  </div>
+</div>`;
+
+  htmlBuild = htmlBuild + startHTML;
 }
 
 function createEngineer(name, ID, email, gitHub) {
@@ -163,4 +208,4 @@ function internPrompt() {
     });
 }
 
-writetoHTML(testHTML4);
+managerPrompt();
