@@ -2,11 +2,14 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 
+//require class definitions
+const classes = require("./lib/classes");
+
 const inquirerPrompts = [
-  "Enter Team Manager Name",
-  "Enter Employee ID",
-  "Enter E-Mail Address",
-  "Enter Office Number",
+  "Enter Team Manager Name:",
+  "Enter Employee ID:",
+  "Enter E-Mail Address:",
+  "Enter Office Number:",
 ];
 
 //collect manager inputs and writes to file
